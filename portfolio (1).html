@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amuleekjot (AJ) Reehal — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#17120D; --panel:#201913; --panel-2:#2A2118; --line:#40321F;
+    --ink:#F3EADC; --ink-dim:#B6A38B;
+    --orange:#C9570F; --gold:#DDA528; --cream:#F3EADC;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:calc(64px + env(safe-area-inset-top,0px));}
+  body{
+    margin:0; background:
+      radial-gradient(ellipse at top, #231B13 0%, var(--bg) 55%);
+    color:var(--ink); font-family:'Inter',-apple-system,sans-serif;
+    padding-bottom:env(safe-area-inset-bottom,0px); -webkit-font-smoothing:antialiased;
+  }
+  .cond{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  .court-divider{height:10px; width:100%; overflow:hidden; opacity:.9;}
+  .court-divider svg{display:block; width:100%; height:100%;}
+
+  .tabbar{
+    position:sticky; top:0; z-index:10; display:flex; align-items:stretch;
+    background:var(--panel); border-bottom:2px solid var(--orange);
+    padding-top:env(safe-area-inset-top,0px); overflow-x:auto;
+  }
+  .tabbar a{
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.08em;
+    font-weight:600; font-size:.85rem; color:var(--ink-dim); text-decoration:none;
+    padding:16px 20px; white-space:nowrap; border-right:1px solid var(--line);
+    transition:color .15s ease;
+  }
+  .tabbar a:hover{color:var(--gold);}
+  .tabbar a.name{color:var(--cream); font-weight:700; margin-right:auto;}
+  .tabbar a.name .num{color:var(--orange);}
+
+  .wrap{max-width:780px; margin:0 auto; padding:0 24px;}
+
+  .hero{padding:56px 0 36px; position:relative;}
+  .kicker{
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.18em;
+    font-size:.78rem; color:var(--orange); font-weight:700; margin:0 0 10px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.2rem,7vw,3.4rem); line-height:1; letter-spacing:.01em; margin:0 0 6px; color:var(--cream);
+  }
+  .position{
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em;
+    font-size:1.1rem; color:var(--gold); font-weight:600; margin:0 0 20px;
+  }
+  .lede{max-width:58ch; color:var(--ink-dim); font-size:1.02rem; line-height:1.65; margin:0 0 26px;}
+
+  .statline{
+    display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line);
+    border-radius:var(--radius); overflow:hidden; margin-bottom:26px;
+  }
+  .statline div{padding:12px 10px; text-align:center; border-right:1px solid var(--line); background:var(--panel);}
+  .statline div:last-child{border-right:none;}
+  .statline .v{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.3rem; color:var(--orange);}
+  .statline .l{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:.65rem; color:var(--ink-dim); margin-top:2px;}
+
+  .contact-row{display:flex; flex-wrap:wrap; gap:10px 18px; font-family:'JetBrains Mono',monospace; font-size:.8rem;}
+  .contact-row a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px;}
+  .contact-row a:hover{border-color:var(--orange); color:var(--gold);}
+
+  section{padding:42px 0; border-top:1px solid var(--line);}
+  .sec-label{
+    display:flex; align-items:baseline; gap:10px; margin:0 0 22px;
+  }
+  .sec-label .q{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem;
+    color:var(--bg); background:var(--orange); padding:2px 9px; border-radius:3px; letter-spacing:.04em;
+  }
+  .sec-label .t{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:1.3rem; color:var(--cream); font-weight:600;}
+
+  .boxscore{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--panel);}
+  .bs-row{display:grid; grid-template-columns:150px 1fr; border-bottom:1px solid var(--line);}
+  .bs-row:last-child{border-bottom:none;}
+  .bs-cat{
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em;
+    font-weight:600; font-size:.82rem; color:var(--gold); padding:13px 16px; background:var(--panel-2);
+    border-right:1px solid var(--line);
+  }
+  .bs-val{padding:13px 16px; display:flex; flex-wrap:wrap; gap:7px; align-items:center;}
+  .bs-val span{
+    font-family:'JetBrains Mono',monospace; font-size:.76rem; color:var(--ink);
+    border:1px solid var(--line); padding:3px 9px; border-radius:3px; background:rgba(201,87,15,.08);
+  }
+  @media(max-width:480px){ .bs-row{grid-template-columns:1fr;} .bs-cat{border-right:none; border-bottom:1px solid var(--line);} }
+
+  .proj{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); margin-bottom:16px; overflow:hidden;}
+  .proj-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;
+    padding:14px 20px; background:var(--panel-2); border-bottom:1px solid var(--orange);
+  }
+  .proj-head .fname{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.03em; font-weight:700; color:var(--cream); font-size:1.05rem;}
+  .proj-head .date{font-family:'JetBrains Mono',monospace; color:var(--ink-dim); font-size:.72rem;}
+  .proj-body{padding:18px 20px 20px;}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .stack span{font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--gold); border:1px solid var(--line); padding:2px 8px; border-radius:3px; background:rgba(221,165,40,.07);}
+  .proj-body ul{margin:0; padding-left:20px; color:var(--ink-dim); line-height:1.6; font-size:.93rem;}
+  .proj-body li{margin-bottom:8px;}
+  .proj-body li::marker{color:var(--orange);}
+
+  .log-entry{display:grid; grid-template-columns:112px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .log-entry:last-child{border-bottom:none;}
+  .log-time{font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--orange); padding-top:2px;}
+  .log-role{font-weight:600; margin:0 0 2px; font-size:.98rem; color:var(--cream);}
+  .log-org{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.04em; font-size:.78rem; color:var(--gold); margin:0 0 8px;}
+  .log-entry ul{margin:0; padding-left:18px; color:var(--ink-dim); font-size:.9rem; line-height:1.6;}
+  .log-entry li::marker{color:var(--orange);}
+  @media(max-width:520px){ .log-entry{grid-template-columns:1fr; gap:4px;} }
+
+  .edu-card{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:18px 20px;}
+  .edu-card h3{margin:0 0 4px; font-size:1.05rem; color:var(--cream); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.03em;}
+  .edu-card .sub{font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--ink-dim); margin:0 0 10px;}
+  .edu-card .coursework{font-size:.88rem; color:var(--ink-dim); line-height:1.6;}
+
+  footer{
+    border-top:2px solid var(--orange); padding:30px 0 50px; text-align:center;
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.1em; font-size:.8rem; color:var(--ink-dim);
+  }
+  footer a{color:var(--gold); text-decoration:none;}
+  @media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<div class="court-divider">
+  <svg viewBox="0 0 400 10" preserveAspectRatio="none"><rect width="400" height="10" fill="#C9570F"/><circle cx="200" cy="5" r="3.2" fill="none" stroke="#17120D" stroke-width="1"/></svg>
+</div>
+
+<nav class="tabbar">
+  <a href="#top" class="name">AJ <span class="num">#33</span> Reehal</a>
+  <a href="#skills">Q1 · Skills</a>
+  <a href="#projects">Q2 · Projects</a>
+  <a href="#experience">Q3 · Experience</a>
+  <a href="#education">Q4 · Education</a>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero" id="top">
+    <p class="kicker">Starting Lineup</p>
+    <div style="display:flex; align-items:center; gap:18px; margin-bottom:6px;">
+      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+        <circle cx="26" cy="26" r="23" fill="#C9570F" stroke="#17120D" stroke-width="2"/>
+        <path d="M26 3 V49 M3 26 H49" stroke="#17120D" stroke-width="2" fill="none"/>
+        <path d="M8 10 Q26 26 8 42 M44 10 Q26 26 44 42" stroke="#17120D" stroke-width="2" fill="none"/>
+      </svg>
+      <h1 style="margin:0;">Amuleekjot<br>(AJ) Reehal</h1>
+    </div>
+    <p class="position">Software &amp; Computer Engineer</p>
+    <p class="lede">Third-year Computer Engineering student at Toronto Metropolitan University. I build backend systems and data-driven applications — from probability engines that forecast NBA seasons to habit-tracking apps with real-time streak logic.</p>
+
+    <div class="statline">
+      <div><div class="v">3rd</div><div class="l">Year — TMU</div></div>
+      <div><div class="v">4</div><div class="l">Projects</div></div>
+      <div><div class="v">5</div><div class="l">Languages</div></div>
+      <div><div class="v">2029</div><div class="l">Grad</div></div>
+    </div>
+
+    <div class="contact-row">
+      <a href="mailto:reehalaj@gmail.com">reehalaj@gmail.com</a>
+      <a href="tel:+16472417816">(647) 241-7816</a>
+      <a href="https://github.com/AJReehal">github.com/AJReehal</a>
+      <a href="#">linkedin.com/in/AJReehal</a>
+    </div>
+  </div>
+
+  <section id="skills">
+    <p class="sec-label"><span class="q">Q1</span><span class="t">Skills — Box Score</span></p>
+    <div class="boxscore">
+      <div class="bs-row"><div class="bs-cat">Programming</div><div class="bs-val"><span>Java</span><span>Python</span><span>C</span><span>C++</span><span>HTML</span><span>CSS</span></div></div>
+      <div class="bs-row"><div class="bs-cat">Frameworks</div><div class="bs-val"><span>JavaFX</span><span>Java Swing</span></div></div>
+      <div class="bs-row"><div class="bs-cat">DB / Cloud</div><div class="bs-val"><span>SQL</span></div></div>
+      <div class="bs-row"><div class="bs-cat">Tools</div><div class="bs-val"><span>GitHub</span><span>VS Code</span><span>Microsoft 365</span><span>MATLAB</span></div></div>
+      <div class="bs-row"><div class="bs-cat">In Training</div><div class="bs-val"><span>Spring Boot</span><span>Angular</span></div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="sec-label"><span class="q">Q2</span><span class="t">Projects</span></p>
+
+    <div class="proj">
+      <div class="proj-head"><span class="fname">NBA Standings &amp; Playoff Predictor</span><span class="date">Aug 2026 – Present</span></div>
+      <div class="proj-body">
+        <div class="stack"><span>Java</span><span>Spring Boot</span><span>Angular</span><span>TypeScript</span><span>JPA/Hibernate</span></div>
+        <ul>
+          <li>Designed a Spring Boot and JPA backend modeling NBA teams and games with Elo-style ratings, replacing a naive win-percentage approach to produce probability-based playoff seeding forecasts.</li>
+          <li>Built a Monte Carlo simulation engine to project regular-season standings across both conferences, giving users confidence percentages ("34% to finish 1st") instead of a single fixed prediction.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><span class="fname">Habit &amp; Streak Tracker</span><span class="date">Sept 2026 – Present</span></div>
+      <div class="proj-body">
+        <div class="stack"><span>React</span><span>Node.js</span><span>Bootstrap CSS</span><span>GitHub Pages</span></div>
+        <ul>
+          <li>Designed a habit-tracking web app with a custom streak-calculation engine to solve the problem of users abandoning habit apps due to unclear progress tracking, resulting in a real-time current/longest-streak system that updates on every logged entry.</li>
+          <li>Built a GitHub-contribution-style heatmap calendar component to visualize completion history at a glance, surfacing trends across weeks and months.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><span class="fname">Bookstore Management System</span><span class="date">March 2026</span></div>
+      <div class="proj-body">
+        <div class="stack"><span>Java</span><span>JavaFX</span><span>GUI</span><span>Visual Paradigm</span></div>
+        <ul>
+          <li>Designed and built a Java Swing bookstore application outlined by UML diagrams to define clear use cases, preventing scope creep and delivering a fully functioning admin and customer system.</li>
+          <li>Implemented the state design pattern to build a tiered loyalty rewards system that automatically calculates real-time discounts and points on every purchase.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head"><span class="fname">Environmental Data Analysis Tool</span><span class="date">March 2025</span></div>
+      <div class="proj-body">
+        <div class="stack"><span>C++</span><span>GNUplot</span><span>Data Processing</span></div>
+        <ul>
+          <li>Designed a C++ data analysis application that reads and parses large environmental datasets, executing statistical calculations to transform raw text into clean, structured information.</li>
+          <li>Integrated an automated GNUplot pipeline to generate and export line graphs as PNG files, reducing manual charting effort by auto-saving visual trends to local storage.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="sec-label"><span class="q">Q3</span><span class="t">Experience</span></p>
+
+    <div class="log-entry">
+      <div class="log-time">Sept 2020 –<br>Dec 2025</div>
+      <div>
+        <p class="log-role">Graphic Designer</p>
+        <p class="log-org">Nanak Noor Media — Remote</p>
+        <ul>
+          <li>Consulted directly with customers and clients to understand design requirements, translating their vision into print-ready graphic design work.</li>
+          <li>Operated commercial printing and digital production equipment to produce finished media, managing the process from design through final print.</li>
+          <li>Built and maintained relationships with wholesalers and suppliers to source materials and support ongoing production needs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-time">April 2024 –<br>Present</div>
+      <div>
+        <p class="log-role">House League Coach (Volunteer)</p>
+        <p class="log-org">Brampton Minor Basketball</p>
+        <ul>
+          <li>Coached a house league basketball team, planning weekly practices and running drills to build fundamentals in dribbling, shooting, and team defense for players of mixed skill levels.</li>
+          <li>Managed game-day rotations and play-calling to give every player meaningful court time, while mentoring younger athletes on sportsmanship and teamwork.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-time">May 2023 –<br>Present</div>
+      <div>
+        <p class="log-role">Volunteer</p>
+        <p class="log-org">Sachkhand Nanak Dham</p>
+        <ul>
+          <li>Supported community langar (free kitchen) operations, helping prepare and serve meals to hundreds of visitors during weekly and event-based services.</li>
+          <li>Assisted with setup, cleanup, and general operations for community events, contributing to a welcoming and organized environment for attendees.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-time">Feb 2026 –<br>Present</div>
+      <div>
+        <p class="log-role">Nationally Certified Tutor</p>
+        <p class="log-org">UPchieve — Remote/Virtual</p>
+        <ul>
+          <li>Delivered on-demand virtual math and science tutoring to high school students, breaking down complex concepts into simple steps to increase classroom understanding.</li>
+          <li>Provided college counselling and application support to boost students' confidence in reaching their career goals.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-time">Sept 2023 –<br>March 2024</div>
+      <div>
+        <p class="log-role">Computer Support Intern / Computer Host</p>
+        <p class="log-org">Brampton, Ontario</p>
+        <ul>
+          <li>Diagnosed and repaired hardware failures, resolved OS errors, and handled software installations across diverse client devices to ensure peak performance and security.</li>
+          <li>Communicated technical solutions clearly to clients while maintaining organized inventory and repair logs, streamlining workshop workflow and speeding up repairs.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <p class="sec-label"><span class="q">Q4</span><span class="t">Education</span></p>
+    <div class="edu-card">
+      <h3>Toronto Metropolitan University</h3>
+      <p class="sub">Bachelor of Computer Engineering — Expected Graduation, April 2029 · Toronto, ON</p>
+      <p class="coursework">Related coursework: Data Structures &amp; Algorithms, Object-Oriented Programming &amp; Design Patterns, Database Design &amp; Architecture, Computer Architecture.</p>
+    </div>
+  </section>
+
+  <footer>
+    Final · <a href="mailto:reehalaj@gmail.com">reehalaj@gmail.com</a> · last updated Oct 2026
+  </footer>
+
+</div>
+</body>
+</html>
